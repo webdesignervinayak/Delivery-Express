@@ -68,9 +68,10 @@ span{
 
 .shimmer-card {
     width: 250px;
+    height: 300px;
     border-radius: 5px;
     margin : 10px 10px;
-    background-color: grey;
+    background-color: #f0f0f0;
 }
 
 .shimmer-container {

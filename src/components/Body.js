@@ -25,7 +25,7 @@ const Body = () => {
     }
 
     if(listofRestaurant?.length === 0){
-        return <Shimmer />
+        return <Shimmer />;
     }
 
     return ( 
