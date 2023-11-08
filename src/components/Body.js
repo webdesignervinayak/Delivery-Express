@@ -38,11 +38,11 @@ const Body = () => {
     return ( 
         <div className="body">
 
-            <div className="filter">
+            <div className="flex mx-24 justify-between">
 
-                <div className="search">
-                    <input type="text" className="search-box" value={searchText} onChange={ (e) => setSearchText(e.target.value)} />
-                    <button className="search-btn" onClick= { () => {
+                <div className="m-4">
+                    <input type="text" className="m-2 p-2 border border-gray-400 rounded-md" value={searchText} onChange={ (e) => setSearchText(e.target.value)} />
+                    <button className="m-2 p-2 bg-orange-400 rounded-md text-white font-semibold hover:scale-95" onClick= { () => {
                         const searchRestro = listofRestaurant?.filter((resto) => resto?.info?.name?.toLowerCase()?.includes(searchText?.toLowerCase()));
                         setFilteredListofRestaurant(searchRestro);
                     }}
@@ -51,16 +51,20 @@ const Body = () => {
                     </button>
                 </div>
 
-                <button className="filter-btn" onClick={ () => {
-                    const topList = filteredListofRestaurant.filter( (res) => res.info.avgRating > 4 );
-                    setFilteredListofRestaurant(topList);
-                }}>
-                    Top Rated Restaurant
-                </button>
+                <div className="m-4">
+                    <div className="m-2 p-2 bg-orange-500 rounded-md text-white font-semibold hover:scale-95">
+                        <button onClick={ () => {
+                        const topList = filteredListofRestaurant.filter( (res) => res.info.avgRating > 4 );
+                        setFilteredListofRestaurant(topList);
+                        }}>
+                        Top Rated Restaurant
+                        </button>
+                    </div>
+                </div>
 
             </div>
 
-            <div className="res-container">
+            <div className="flex flex-wrap items-center justify-center">
                 {
                     filteredListofRestaurant?.map( (restaurant) => 
                     <Link to={"/restaurantMenu/" + restaurant?.info?.id}  key={restaurant?.info?.id} className="link-style"><RestaurantCard  resData={restaurant}/></Link>)

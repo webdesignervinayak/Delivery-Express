@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider , Outlet} from "react-router-dom";
 import Header from "./components/Header";
@@ -7,13 +7,25 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import userContext from "./utils/userContext";
 
 function AppLayout() {
+    const [userName,setUserName] = useState(" ")
+
+    useEffect( () =>{
+        const data = {
+            name:"Vinayak"
+        };
+        setUserName(data.name);
+    },[])
+    
     return (
-        <div className="app">
+        <userContext.Provider value={ {loggedInUser: userName} }>
+            <div className="app">
             <Header />
             <Outlet />
-        </div>
+            </div>
+        </userContext.Provider>
     );
 }
 
