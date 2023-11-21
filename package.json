@@ -4,6 +4,7 @@
   "description": "This is Namaste React",
   "scripts": {
     "test": "jest",
+    "watch-test": "jest --watch",
     "start": "parcel index.html",
     "build": "parcel build index.html"
   },
@@ -22,12 +23,20 @@
   },
   "homepage": "https://github.com/webdesignervinayak/Namaste-react#readme",
   "devDependencies": {
-    "parcel": "^2.9.3",
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.1.0",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "parcel": "^2.10.2",
     "postcss": "^8.4.31",
     "process": "^0.11.10",
     "tailwindcss": "^3.3.3"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.23.3",
     "@parcel/transformer-react-refresh-wrap": "^2.10.2",
     "@reduxjs/toolkit": "^1.9.7",
     "react": "^18.2.0",

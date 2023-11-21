@@ -16,7 +16,7 @@ const ItemLists = ({items}) => {
     return ( 
             <div className="text-left m-2 p-2 ">
                { items.map( (item) =>
-               <div className=" m-2 p-2 border-b-2 border-gray-300 flex justify-between"key={item.card.info.id}>
+               <div className=" m-2 p-2 border-b-2 border-gray-300 flex justify-between"key={item.card.info.id} data-testid="foodItems">
                 <div className="w-9/12">
                     <p className="font-semibold">{item.card.info.name}</p>
                     <p className="font-semibold">₹ { item.card.info.defaultPrice != undefined ? item.card.info.defaultPrice/100 : item.card.info.price/100}</p>

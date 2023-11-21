@@ -41,7 +41,7 @@ const Body = () => {
             <div className="flex mx-24 justify-between">
 
                 <div className="m-4">
-                    <input type="text" className="m-2 p-2 border border-gray-400 rounded-md" value={searchText} onChange={ (e) => setSearchText(e.target.value)} />
+                    <input type="text" className="m-2 p-2 border border-gray-400 rounded-md" data-testid="SearchInput" value={searchText} onChange={ (e) => setSearchText(e.target.value)} />
                     <button className="m-2 p-2 bg-orange-400 rounded-md text-white font-semibold hover:scale-95" onClick= { () => {
                         const searchRestro = listofRestaurant?.filter((resto) => resto?.info?.name?.toLowerCase()?.includes(searchText?.toLowerCase()));
                         setFilteredListofRestaurant(searchRestro);
@@ -67,7 +67,7 @@ const Body = () => {
             <div className="flex flex-wrap items-center justify-center">
                 {
                     filteredListofRestaurant?.map( (restaurant) => 
-                    <Link to={"/restaurantMenu/" + restaurant?.info?.id}  key={restaurant?.info?.id} className="link-style"><RestaurantCard  resData={restaurant}/></Link>)
+                    <Link to={"/restaurantMenu/" + restaurant?.info?.id}  key={restaurant?.info?.id} className="link-style"><RestaurantCard resData={restaurant}/></Link>)
                 }
             </div>
 
