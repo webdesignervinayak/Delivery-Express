@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { CDN_URL } from "../utils/constants";
 
 
 const Body = () => {
     const [listofRestaurant,setListofRestaurant] = useState([]);
     const [filteredListofRestaurant,setFilteredListofRestaurant] = useState([]);
+    const [foodBanners,setFoodBanners] = useState([]);
 
     const [searchText,setSearchText] = useState("");
 
@@ -23,6 +25,7 @@ const Body = () => {
         const JSON = await data.json();
         setListofRestaurant(JSON?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredListofRestaurant(JSON?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFoodBanners(JSON?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
     }
     //episode 9
     const onlineStatus = useOnlineStatus();
@@ -37,6 +40,14 @@ const Body = () => {
 
     return ( 
         <div className="body">
+            <div className="my-2 mx-16 flex overflow-x-scroll no-scrollbar">
+                {foodBanners.map((f) => <img key={f.id} src={CDN_URL+f?.imageId} alt="foodBanners" className="w-32 mx-4" onClick={ () => {
+                    const foodType = listofRestaurant?.filter( (ft) => ft?.info?.cuisines.toString()?.includes(f?.action?.text));
+                    setFilteredListofRestaurant(foodType);
+                } }>
+
+                </img>)}
+            </div>
 
             <div className="flex mx-24 justify-between">
 
