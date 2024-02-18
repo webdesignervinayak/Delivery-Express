@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import { CDN_URL, defaultLocation} from "../utils/constants";
+import { CDN_URL} from "../utils/constants";
 import { useSelector } from "react-redux";
 
 
@@ -43,7 +43,7 @@ const Body = () => {
         <div className="body">
                 <p className="font-bold mx-14 text-xl">Vinayak what's on your Mind?</p>
                 <div className="my-2 mx-16 flex overflow-x-scroll no-scrollbar">
-                {foodBanners.map((f) => <img key={f.id} src={CDN_URL+f?.imageId} alt="foodBanners" className="w-32 mx-4" onClick={ () => {
+                {foodBanners?.map((f) => <img key={f.id} src={CDN_URL+f?.imageId} alt="foodBanners" className="w-32 mx-4" onClick={ () => {
                     const foodType = listofRestaurant?.filter( (ft) => ft?.info?.cuisines.toString()?.includes(f?.action?.text));
                     setFilteredListofRestaurant(foodType);
                 } }>

@@ -1,8 +1,11 @@
-import { useDispatch } from "react-redux";
-import { addItem } from "../utils/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, removeItem } from "../utils/cartSlice";
 
 const ItemLists = ({items}) => {
+
+    const cartItems = useSelector((store) => store.cart.items)
     //console.log(items);
+    console.log(cartItems);
     const handleError = () => {
         return <img className="w-[150px] h-[120px] rounded-lg" src="https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg"></img>    
     };
@@ -11,6 +14,10 @@ const ItemLists = ({items}) => {
 
     const handleAddItem = (item) => {
         dispatch(addItem(item));
+    }
+
+    const handleRemoveItem = (item) => {
+        dispatch(removeItem(item));
     }
 
     return ( 
@@ -24,10 +31,17 @@ const ItemLists = ({items}) => {
                 </div>
 
                 <div className="p-4 w-3/12" >
-                    <button className="p-2 mx-14 my-16 bg-green-800 text-white absolute text-xs rounded-md hover:scale-110"
-                    onClick = { () => handleAddItem(item)}>
-                         ADD+ 
-                    </button>
+                    {
+                        cartItems.length && cartItems.find((c) => c.card.info.id == item.card.info.id) ? <button className="p-2 mx-10 my-16 bg-red-600 text-white absolute text-xs rounded-md hover:scale-110"
+                        onClick = { () => handleRemoveItem(item)}>
+                             Remove 
+                        </button> : 
+                        <button className="p-2 mx-14 my-16 bg-green-800 text-white absolute text-xs rounded-md hover:scale-110"
+                        onClick = { () => handleAddItem(item)}>
+                             ADD+ 
+                        </button>
+
+                    }
                     {
                     item.card.info.imageId ? 
                     <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/"+ item.card.info.imageId}
