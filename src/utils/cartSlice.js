@@ -19,10 +19,8 @@ const cartSlice = createSlice ({
             const itemIndex = state.items.findIndex(item => item.card.info.id == action.payload.card.info.id)
             if(itemIndex >= 0)
             state.items[itemIndex].itemQuantity -= 1;
-            if(state.items[itemIndex].itemQuantity == 0){
-            const tempItem = {...action.payload,itemQuantity: 1}
+            if(state.items[itemIndex].itemQuantity == 0)
             state.items.splice(itemIndex,1);
-            }
             /*const itemId = action.payload.card.info.id;
             state.items = state.items.filter((item) => item.card.info.id !== itemId);*/
         },
