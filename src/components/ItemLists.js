@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../utils/cartSlice";
+import { useState } from "react";
 
 const ItemLists = ({items}) => {
 
     const cartItems = useSelector((store) => store.cart.items)
+    const [count,setCount] = useState(0);
     //console.log(items);
-    console.log(cartItems);
+    //console.log(cartItems);
     const handleError = () => {
         return <img className="w-[150px] h-[120px] rounded-lg" src="https://i.pinimg.com/originals/f5/05/24/f50524ee5f161f437400aaf215c9e12f.jpg"></img>    
     };
@@ -14,6 +16,7 @@ const ItemLists = ({items}) => {
 
     const handleAddItem = (item) => {
         dispatch(addItem(item));
+        setCount(c => c + 1);
     }
 
     const handleRemoveItem = (item) => {
@@ -32,15 +35,16 @@ const ItemLists = ({items}) => {
 
                 <div className="p-4 w-3/12" >
                     {
-                        cartItems.length && cartItems.find((c) => c.card.info.id == item.card.info.id) ? <button className="p-2 mx-10 my-16 bg-red-600 text-white absolute text-xs rounded-md hover:scale-110"
-                        onClick = { () => handleRemoveItem(item)}>
-                             Remove 
-                        </button> : 
-                        <button className="p-2 mx-14 my-16 bg-green-800 text-white absolute text-xs rounded-md hover:scale-110"
-                        onClick = { () => handleAddItem(item)}>
-                             ADD+ 
+                        cartItems.length && cartItems.find((c) => c.card.info.id == item.card.info.id) ? 
+                        <div className=" mx-8 my-16 bg-green-800 text-white absolute text-xs rounded-md hover:scale-110 font-extrabold">
+                            <button className="p-2" onClick={() => handleRemoveItem(item)}> - </button>
+                            <button className="p-2 text-green-800 bg-white"> {cartItems[cartItems.findIndex((c) => c.card.info.id == item.card.info.id)].itemQuantity} </button>
+                            <button className="p-2" onClick={() => handleAddItem(item)}> + </button>
+                        </div>
+                            : 
+                        <button  className="p-2 mx-8 my-16 bg-green-800 text-white absolute text-xs rounded-md hover:scale-110"  onClick={() => handleAddItem(item)}>
+                           ADD+
                         </button>
-
                     }
                     {
                     item.card.info.imageId ? 

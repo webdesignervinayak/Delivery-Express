@@ -16,7 +16,7 @@ const Cart = () => {
     useEffect( () => {
         let tot = 0;
         for(let i = 0; i<cartItems.length ; i++){
-            tot += cartItems[i].card.info.defaultPrice != undefined ? cartItems[i].card.info.defaultPrice : cartItems[i].card.info.price ;
+            tot += cartItems[i].card.info.defaultPrice != undefined ? (cartItems[i].card.info.defaultPrice * cartItems[i].itemQuantity) : (cartItems[i].card.info.price * cartItems[i].itemQuantity)  ;
         }
         setItemTotal(tot);
     },[cartItems])
