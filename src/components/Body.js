@@ -19,7 +19,7 @@ const Body = () => {
 
     const fetchData = async (updateLocation) => {
         const data = await fetch(
-            "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat="+updateLocation?.lat+"&lng="+updateLocation?.lon+"&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+            "https://corsproxy.org/?https://www.swiggy.com/dapi/restaurants/list/v5?lat="+updateLocation?.lat+"&lng="+updateLocation?.lon+"&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
         );
 
         const JSON = await data.json();
