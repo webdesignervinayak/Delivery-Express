@@ -19,7 +19,7 @@ const Body = () => {
 
     const fetchData = async (updateLocation) => {
         const data = await fetch(
-            "https://www.swiggy.com/dapi/restaurants/list/v5?lat="+updateLocation.lat+"&lng="+updateLocation.lon+"&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+            "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat="+updateLocation?.lat+"&lng="+updateLocation?.lon+"&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
         );
 
         const JSON = await data.json();
@@ -34,8 +34,8 @@ const Body = () => {
         return <h1>You are Offline!! , Please check your Internet Connection.</h1>
     }
 
-    if(listofRestaurant?.length === 0){
-        return <Shimmer />;
+    if(listofRestaurant?.length == 0){
+        return <Shimmer/>;
     }
 
     return ( 
@@ -79,7 +79,7 @@ const Body = () => {
 
             </div>
 
-            <p className="mx-14 my-4 font-bold text-xl">Top Rated Restaurant's in {updateLocation.name}</p>
+            <p className="mx-14 my-4 font-bold text-xl">Top Rated Restaurant's in {updateLocation?.name}</p>
 
             <div className="mx-12 flex flex-wrap items-center justify-center">
                 {
