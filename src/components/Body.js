@@ -41,7 +41,13 @@ const Body = () => {
 
     return ( 
         <div className="body">
+                <div className="flex justify-between">
                 <p className="font-bold mx-14 text-xl">Vinayak what's on your Mind?</p>
+                <div className="mx-16 font-extrabold">
+                    <button className="m-1 p-2 bg-gray-300 rounded-full">◄</button>
+                    <button className="m-1 p-2  bg-gray-300 rounded-full">►</button>
+                </div>
+                </div>
                 <div className="my-2 mx-16 flex overflow-x-scroll no-scrollbar">
                 {foodBanners?.map((f) => <img key={f.id} src={CDN_URL+f?.imageId} alt="foodBanners" className="w-32 mx-4" onClick={ () => {
                     const foodType = listofRestaurant?.filter( (ft) => ft?.info?.cuisines.toString()?.includes(f?.action?.text));
@@ -77,7 +83,7 @@ const Body = () => {
 
             </div>
 
-            <p className="mx-14 font-bold">Top Rated Restaurant's in {updateLocation.name}</p>
+            <p className="mx-14 font-bold text-xl">Top Rated Restaurant's in {updateLocation.name}</p>
 
             <div className="flex flex-wrap items-center justify-center">
                 {

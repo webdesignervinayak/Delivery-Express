@@ -49,7 +49,7 @@ const ItemLists = ({items}) => {
                     {
                     item.card.info.imageId ? 
                     <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/"+ item.card.info.imageId}
-                      className="w-[150px] h-[120px] rounded-lg" onError={handleError}></img> :
+                      className="w-[150px] h-[100px] rounded-lg" onError={handleError}></img> :
                       handleError()
                     }
                 </div> 
