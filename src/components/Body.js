@@ -6,7 +6,6 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import { CDN_URL} from "../utils/constants";
 import { useSelector } from "react-redux";
 
-
 const Body = () => {
     const updateLocation = useSelector((store) => store.location.updateLocation);
     const [listofRestaurant,setListofRestaurant] = useState([]);
@@ -41,21 +40,18 @@ const Body = () => {
 
     return ( 
         <div className="body">
-                <div className="flex justify-between">
+                <div>
                 <p className="font-bold mx-14 text-xl">Vinayak what's on your Mind?</p>
-                <div className="mx-16 font-extrabold">
-                    <button className="m-1 p-2 bg-gray-300 rounded-full">◄</button>
-                    <button className="m-1 p-2  bg-gray-300 rounded-full">►</button>
                 </div>
-                </div>
+
                 <div className="my-2 mx-16 flex overflow-x-scroll no-scrollbar">
-                {foodBanners?.map((f) => <img key={f.id} src={CDN_URL+f?.imageId} alt="foodBanners" className="w-32 mx-4" onClick={ () => {
+                {foodBanners?.map((f) =>  <img key={f.id} src={CDN_URL+f?.imageId} alt="foodBanners" className="w-32 mx-4" onClick={ () => {
                     const foodType = listofRestaurant?.filter( (ft) => ft?.info?.cuisines.toString()?.includes(f?.action?.text));
                     setFilteredListofRestaurant(foodType);
                 } }>
-
-                </img>)}
-            </div>
+                </img>
+               )}
+                </div>
 
             <div className="flex mx-24 justify-between">
 
@@ -83,9 +79,9 @@ const Body = () => {
 
             </div>
 
-            <p className="mx-14 font-bold text-xl">Top Rated Restaurant's in {updateLocation.name}</p>
+            <p className="mx-14 my-4 font-bold text-xl">Top Rated Restaurant's in {updateLocation.name}</p>
 
-            <div className="flex flex-wrap items-center justify-center">
+            <div className="mx-12 flex flex-wrap items-center justify-center">
                 {
                     filteredListofRestaurant?.map( (restaurant) => 
                     <Link to={"/restaurantMenu/" + restaurant?.info?.id}  key={restaurant?.info?.id} className="link-style"><RestaurantCard resData={restaurant}/></Link>)
