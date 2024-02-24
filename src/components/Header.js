@@ -48,7 +48,6 @@ const Header = () => {
                 <ul className="flex">
                     <li className="p-2 font-bold">Online/offline:{onlineStatus ?"🟢":"🔴"}</li>
                     <li className="p-2 font-bold"><Link to="/">Home</Link></li>
-                    <li className="p-2 font-bold"><Link to="/about">About Us</Link></li>
                     <li className="p-2 font-bold"><Link to="/contact">Contact Us</Link></li>
                     <li className="p-2 font-bold"><Link to="/cart">Cart({cartItems.length})</Link></li>
                     <li className="p-2 font-bold"><button className="log-btn" onClick={() => setLogInOut(btnChange(logInOut))}> {logInOut} </button></li>
