@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import { CDN_URL} from "../utils/constants";
+import { CDN_URL, RESTRO_URL, generateProxyUrl} from "../utils/constants";
 import { useSelector } from "react-redux";
 
 const Body = () => {
@@ -18,9 +18,8 @@ const Body = () => {
     },[updateLocation]);
 
     const fetchData = async (updateLocation) => {
-        const data = await fetch(
-            "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat="+updateLocation?.lat+"&lng="+updateLocation?.lon+"&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-        );
+        const resource = generateProxyUrl(RESTRO_URL+updateLocation?.lat+"&lng="+updateLocation?.lon+"&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+        const data = await fetch(resource);
 
         const JSON = await data.json();
         setListofRestaurant(JSON?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);

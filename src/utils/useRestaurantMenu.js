@@ -1,6 +1,6 @@
 //customhook
 import { useEffect, useState } from "react";
-import { MENU_URL } from "./constants";
+import { MENU_URL, generateProxyUrl } from "./constants";
 
 const useRestaurantMenu = (resId) => {
 
@@ -11,7 +11,8 @@ const useRestaurantMenu = (resId) => {
     },[ ])
 
     const fetchData = async() => {
-        const data = await fetch(MENU_URL + resId.resId);
+        const resourse = generateProxyUrl(MENU_URL + resId.resId)
+        const data = await fetch(resourse);
         const json = await data.json();
         setResInfo(json.data);
         console.log(resInfo);
