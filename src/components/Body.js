@@ -12,6 +12,7 @@ const Body = () => {
     const [filteredListofRestaurant,setFilteredListofRestaurant] = useState([]);
     const [foodBanners,setFoodBanners] = useState([]);
     const [searchText,setSearchText] = useState("");
+    const [load,setLoad] = useState(false);
 
     useEffect( () => {
         fetchData(updateLocation);
@@ -19,8 +20,9 @@ const Body = () => {
 
     const fetchData = async (updateLocation) => {
         const resource = generateProxyUrl(RESTRO_URL+updateLocation?.lat+"&lng="+updateLocation?.lon+"&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+        setLoad(true);
         const data = await fetch(resource);
-
+        setLoad(false);
         const JSON = await data.json();
         setListofRestaurant(JSON?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredListofRestaurant(JSON?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -81,9 +83,9 @@ const Body = () => {
             <p className="mx-14 my-4 font-bold text-xl">Top Rated Restaurant's in {updateLocation?.name}</p>
 
             <div className="mx-12 flex flex-wrap items-center justify-center">
-                {
+                {load ? <Shimmer/> :  (
                     filteredListofRestaurant?.map( (restaurant) => 
-                    <Link to={"/restaurantMenu/" + restaurant?.info?.id}  key={restaurant?.info?.id} className="link-style"><RestaurantCard resData={restaurant}/></Link>)
+                    <Link to={"/restaurantMenu/" + restaurant?.info?.id}  key={restaurant?.info?.id} className="link-style"><RestaurantCard resData={restaurant}/></Link>))
                 }
             </div>
         </div>
