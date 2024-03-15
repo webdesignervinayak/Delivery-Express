@@ -32,6 +32,6 @@ export const defaultLocation = {
     "country": "IN",
     "state": "Telangana"};
 
-    export const PROXY_CORS = "https://corsproxy.org/?";
+    export const PROXY_CORS = "https://thingproxy.freeboard.io/fetch/";
 
     export const generateProxyUrl = (URL) => PROXY_CORS + encodeURIComponent(URL);
