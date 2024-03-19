@@ -19,13 +19,13 @@ const Body = () => {
     },[updateLocation]);
 
     const fetchData = async (updateLocation) => {
-        const resource = generateProxyUrl(RESTRO_URL+updateLocation?.lat+"&lng="+updateLocation?.lon+"&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+        //const resource = generateProxyUrl(RESTRO_URL+updateLocation?.lat+"&lng="+updateLocation?.lon+"&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
         setLoad(true);
-        const data = await fetch(resource);
+        const data = await fetch(`https://deliveryexpress-server.onrender.com/api/restaurants?lat=${updateLocation?.lat}&lng=${updateLocation?.lon}&page_type=DESKTOP_WEB_LISTING`);
         setLoad(false);
         const JSON = await data.json();
-        setListofRestaurant(JSON?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredListofRestaurant(JSON?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setListofRestaurant(JSON?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredListofRestaurant(JSON?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFoodBanners(JSON?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
     }
     //episode 9

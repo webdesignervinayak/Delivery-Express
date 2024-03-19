@@ -8,7 +8,7 @@ export const ITEM_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_
 
 export const API_KEY = "7f142b1dd2aaff9096d57b79a77f92aa"
 
-export const RESTRO_URL = "https://www.swiggy.com/dapi/restaurants/list/v5?lat="
+export const RESTRO_URL = "http://localhost:3000/api/restaurants?lat"
 
 export const defaultLocation = {
     "name": "Karimnagar",
@@ -32,6 +32,6 @@ export const defaultLocation = {
     "country": "IN",
     "state": "Telangana"};
 
-    export const PROXY_CORS = "https://thingproxy.freeboard.io/fetch/";
+    //export const PROXY_CORS = "https://thingproxy.freeboard.io/fetch/";
 
-    export const generateProxyUrl = (URL) => PROXY_CORS + encodeURIComponent(URL);
+    export const generateProxyUrl = (URL) => encodeURIComponent(URL);
