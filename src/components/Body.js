@@ -40,7 +40,7 @@ const Body = () => {
     }
 
     return ( 
-        <div className="body">
+        <div>
                 <div>
                 <p className="font-bold mx-14 text-xl">Vinayak what's on your Mind?</p>
                 </div>

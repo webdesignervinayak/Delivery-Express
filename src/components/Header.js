@@ -36,7 +36,8 @@ const Header = () => {
     }
     
     return (
-        <div className="m-2 p-2 flex justify-between shadow-lg rounded-lg">
+        <div className="w-screen bg-white">
+        <div className="m-2 p-2 flex justify-between shadow-lg rounded-lg bg-white">
             <div className="flex items-center">
             <Link to="/"><img alt="logo" className="w-48 px-10" src ={LOGO_URL}></img></Link>
             <form className="items-center border border-gray-200" onSubmit={(e) => { e.preventDefault();}}>
@@ -54,6 +55,7 @@ const Header = () => {
                     <li className="p-2 font-bold">{loggedInUser}</li>
                 </ul>
             </div>
+        </div>
         </div>
     )
 }
